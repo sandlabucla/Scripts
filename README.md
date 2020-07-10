@@ -1,12 +1,10 @@
 # Scripts
 Lab Wide Scripts
 
-Mainted by:
-
-
-Y Waizman - Lab Manager
-
-AS Mendez Leal - Graduate Student
-JF Guassi Moreira - Graduate Student
-NM Saragosa-Harris - Graduate Student
-W Meredity - Graduate Student
+Maintained by:\n
+\n
+Y Waizman - Lab Manager\n
+AS Mendez Leal - Graduate Student\n
+JF Guassi Moreira - Graduate Student\n
+NM Saragosa-Harris - Graduate Student\n
+W Meredity - Graduate Student\n
