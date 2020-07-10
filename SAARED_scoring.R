@@ -1,73 +1,47 @@
 ########################################################################################## 
-#SAARED questionnaire scoring
+#Screen for Adult Anxiety Related Disorders (SAARED) questionnaire scoring
 #Created by Yael Waizman
 ########################################################################################## 
 
-###Calculate SAARED total score sum 
-SAARED_ANXTOTAL <- function(SAARED_1, SAARED_2, SAARED_3, SAARED_4, SAARED_5, SAARED_6, SAARED_7, SAARED_8, SAARED_9, SAARED_10, SAARED_11, SAARED_12, SAARED_13, SAARED_14, SAARED_15, SAARED_16, SAARED_17, SAARED_18, SAARED_19, SAARED_20, SAARED_21, SAARED_22, SAARED_23, SAARED_24, SAARED_25, SAARED_26, SAARED_27, SAARED_28, SAARED_29, SAARED_30, SAARED_31, SAARED_32, SAARED_33, SAARED_34, SAARED_35, SAARED_36, SAARED_37, SAARED_38, SAARED_39, SAARED_40, SAARED_41, SAARED_42, SAARED_43, SAARED_44){
-  SAARED_ANXTOTAL <- rowSums(cbind(SAARED_1, SAARED_2, SAARED_3, SAARED_4, SAARED_5, SAARED_6, SAARED_7, SAARED_8, SAARED_9, SAARED_10, SAARED_11, SAARED_12, SAARED_13, SAARED_14, SAARED_15, SAARED_16, SAARED_17, SAARED_18, SAARED_19, SAARED_20, SAARED_21, SAARED_22, SAARED_23, SAARED_24, SAARED_25, SAARED_26, SAARED_27, SAARED_28, SAARED_29, SAARED_30, SAARED_31, SAARED_32, SAARED_33, SAARED_34, SAARED_35, SAARED_36, SAARED_37, SAARED_38, SAARED_39, SAARED_40, SAARED_41, SAARED_42, SAARED_43, SAARED_44), na.rm = FALSE)
-  return(SAARED_ANXTOTAL)
-}
-
-###Determine if likely presence of an Anxiety Disorder based on SAAREDc total score
-#A total of >= 23 may indicate presence of an Anxiety Disorder
-#Code: 1 = presence of disorder, 0 = no presence of disorder
-SAARED_ANXYN <- function(SAARED_ANXTOTAL){
-  SAARED_ANXYN <- ifelse(SAARED_ANXTOTAL >= 23, 1, 0)
-  return(SAARED_ANXYN)
-}
-
-###Calculate total and determine presence of Panic Disorder / Significant Somatic Symptoms 
-SAARED_PANIC <- function(SAARED_1, SAARED_2, SAARED_6, SAARED_9, SAARED_11, SAARED_12, SAARED_15, SAARED_17, SAARED_18, SAARED_19, SAARED_22, SAARED_25, SAARED_28, SAARED_32, SAARED_36, SAARED_38, SAARED_40){
-  SAARED_PANIC <- rowSums(cbind(SAARED_1, SAARED_2, SAARED_6, SAARED_9, SAARED_11, SAARED_12, SAARED_15, SAARED_17, SAARED_18, SAARED_19, SAARED_22, SAARED_25, SAARED_28, SAARED_32, SAARED_36, SAARED_38, SAARED_40), na.rm = FALSE)
-  return(SAARED_PANIC)
-}
-#A total of >= 5 may indicate Panic Disorder or Significant Somatic Symptoms
-#Code: 1 = presence of disorder, 0 = no presence of disorder
-SAARED_PANICYN<- function(SAARED_PANIC){
-  SAARED_PANICYN <- ifelse(SAARED_PANIC >= 5, 1, 0)
-  return(SAARED_PANICYN)
-}
-
-###Calculate total and determine presence of Generalized Anxiety Disorder 
-SAARED_GAD <- function(SAARED_5, SAARED_7,SAARED_8, SAARED_14, SAARED_21, SAARED_23, SAARED_24, SAARED_29, SAARED_31, SAARED_35, SAARED_37, SAARED_39, SAARED_44){
-  SAARED_GAD <- rowSums(cbind(SAARED_5, SAARED_7,SAARED_8, SAARED_14, SAARED_21, SAARED_23, SAARED_24, SAARED_29, SAARED_31, SAARED_35, SAARED_37, SAARED_39, SAARED_44), na.rm = FALSE)
-  return(SAARED_GAD)
-} 
-#A total of >= 12 may indicate Generalized Anxiety Disorder
-#Code: 1 = presence of disorder, 0 = no presence of disorder
-SAARED_GADYN <- function(SAARED_GAD){
-  SAARED_GADYN <- ifelse(SAARED_GAD >= 12, 1, 0)
-  return(SAARED_GADYN)
-}
-
-###Calculate total and determine presence of Separation Anxiety 
-SAARED_SEPANX <- function(SAARED_4, SAARED_13, SAARED_16, SAARED_20, SAARED_26, SAARED_30, SAARED_33){
-  SAARED_SEPANX <- rowSums(cbind(SAARED_4, SAARED_13, SAARED_16, SAARED_20, SAARED_26, SAARED_30, SAARED_33), na.rm = FALSE)
-  return(SAARED_SEPANX)
-} 
-#A total of >= 3 may indicate Separation Anxiety Disorder
-#Code: 1 = presence of disorder, 0 = no presence of disorder
-SAARED_SEPANXYN <- function(SAARED_SEPANX){
-  SAARED_SEPANXYN <- ifelse(SAARED_SEPANX >= 3, 1, 0)
-  return(SAARED_SEPANXYN)
-} 
-
-###Calculate total and determine presence of Social Phobis Disorder 
-SAARED_SOCANX <- function(SAARED_3, SAARED_10, SAARED_27, SAARED_34, SAARED_41, SAARED_42, SAARED_43){
-  SAARED_SOCANX <- rowSums(cbind(SAARED_3, SAARED_10, SAARED_27, SAARED_34, SAARED_41, SAARED_42, SAARED_43), na.rm = FALSE)
-  return(SAARED_SOCANX)
-}
-#A total of >= 7 may indicate Social Phobis Disorder
-#Code: 1 = presence of disorder, 0 = no presence of disorder
-SAARED_SOCANXYN <- function(SAARED_SOCANX){
-  SAARED_SOCANXYN <- ifelse(SAARED_SOCANX >= 7, 1, 0)
-  return(SAARED_SOCANXYN)
-} 
-
-
-###Calculate SAARED total score mean
-SAARED_MEAN <- function(SAARED_1, SAARED_2, SAARED_3, SAARED_4, SAARED_5, SAARED_6, SAARED_7, SAARED_8, SAARED_9, SAARED_10, SAARED_11, SAARED_12, SAARED_13, SAARED_14, SAARED_15, SAARED_16, SAARED_17, SAARED_18, SAARED_19, SAARED_20, SAARED_21, SAARED_22, SAARED_23, SAARED_24, SAARED_25, SAARED_26, SAARED_27, SAARED_28, SAARED_29, SAARED_30, SAARED_31, SAARED_32, SAARED_33, SAARED_34, SAARED_35, SAARED_36, SAARED_37, SAARED_38, SAARED_39, SAARED_40, SAARED_41, SAARED_42, SAARED_43, SAARED_44){
-  SAARED_MEAN <- rowMeans(cbind(SAARED_1, SAARED_2, SAARED_3, SAARED_4, SAARED_5, SAARED_6, SAARED_7, SAARED_8, SAARED_9, SAARED_10, SAARED_11, SAARED_12, SAARED_13, SAARED_14, SAARED_15, SAARED_16, SAARED_17, SAARED_18, SAARED_19, SAARED_20, SAARED_21, SAARED_22, SAARED_23, SAARED_24, SAARED_25, SAARED_26, SAARED_27, SAARED_28, SAARED_29, SAARED_30, SAARED_31, SAARED_32, SAARED_33, SAARED_34, SAARED_35, SAARED_36, SAARED_37, SAARED_38, SAARED_39, SAARED_40, SAARED_41, SAARED_42, SAARED_43, SAARED_44), na.rm = TRUE)
-  return(SAARED_MEAN)
+SAARED <- function(dataframe){
+  ###Calculate SAARED total score sum 
+  dataframe$SAARED_ANXTOTAL <- rowSums(dataframe[,paste("SAARED_",c(1:44),sep="")], na.rm = FALSE)
+  
+  ###Determine if likely presence of an Anxiety Disorder based on SAARED total score
+  #A total of >= 23 may indicate presence of an Anxiety Disorder
+  #Code: 1 = presence of disorder, 0 = no presence of disorder
+  dataframe$SAARED_ANXYN <- ifelse(dataframe$SAARED_ANXTOTAL >= 23, 1, 0)
+  
+  ###Calculate total and determine presence of Panic Disorder / Significant Somatic Symptoms 
+  dataframe$SAARED_PANIC <- rowSums(dataframe[,paste("SAARED_",c(1,2,6,9,11,12,15,17,18,19,22,25,28,32,36,38,40),sep="")], na.rm = FALSE)
+  
+  #A total of >= 5 may indicate Panic Disorder or Significant Somatic Symptoms
+  #Code: 1 = presence of disorder, 0 = no presence of disorder
+  dataframe$SAARED_PANICYN <- ifelse(dataframe$SAARED_PANIC >= 5, 1, 0)
+  
+  ###Calculate total and determine presence of Generalized Anxiety Disorder 
+  dataframe$SAARED_GAD <- rowSums(dataframe[,paste("SAARED_",c(5,7,8,14,21,23,24,29,31,35,37,39,44),sep="")], na.rm = FALSE)
+  
+  #A total of >= 12 may indicate Generalized Anxiety Disorder
+  #Code: 1 = presence of disorder, 0 = no presence of disorder
+  dataframe$SAARED_GADYN <- ifelse(dataframe$SAARED_GAD >= 12, 1, 0)
+  
+  ###Calculate total and determine presence of Separation Anxiety 
+  dataframe$SAARED_SEPANX <- rowSums(dataframe[,paste("SAARED_",c(4,13,16,20,26,30,33),sep="")], na.rm = FALSE)
+  
+  #A total of >= 3 may indicate Separation Anxiety Disorder
+  #Code: 1 = presence of disorder, 0 = no presence of disorder
+  dataframe$SAARED_SEPANXYN <- ifelse(dataframe$SAARED_SEPANX >= 3, 1, 0)
+  
+  ###Calculate total and determine presence of Social Phobis Disorder 
+  dataframe$SAARED_SOCANX <- rowSums(dataframe[,paste("SAARED_",c(3,10,27,34,41,42,43),sep="")], na.rm = FALSE)
+  
+  #A total of >= 7 may indicate Social Phobis Disorder
+  #Code: 1 = presence of disorder, 0 = no presence of disorder
+  dataframe$SAARED_SOCANXYN <- ifelse(dataframe$SAARED_SOCANX >= 7, 1, 0)
+  
+  ###Calculate SAARED total score mean
+  dataframe$SAARED_MEAN <- rowMeans(dataframe[,paste("SAARED_",c(1:44),sep="")], na.rm = TRUE)
+  
+  return(dataframe)
 }
