@@ -1,5 +1,5 @@
 # Scripts
-Lab Wide Scripts
+Lab Wide Completed Scripts
 
 Maintained by:
 
