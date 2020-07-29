@@ -17,7 +17,7 @@ ASR_scoring_SB <- function(dataframe,t_score_table){
   ASR_raw_data_colnames <- colnames(dataframe)[grep('ASR',colnames(dataframe))]
   
   ###Calculate total score on Friends scale (total of items ASR_FRIENDS_A - ASR_FRIENDS_D), don't score if any items are missed
-  dataframe$ASR_FRIENDS_TOTAL<- rowSums(dataframe[,paste("ASR","FRIENDS",c("A","B","C"),sep='_')], na.rm = FALSE) 
+  dataframe$ASR_FRIENDS_TOTAL<- rowSums(dataframe[,paste("ASR","FRIENDS",c("A","B","C","D"),sep='_')], na.rm = FALSE) 
   dataframe$ASR_FRIENDS_TSCORE <- ASR_FRIENDS_TSCORE(dataframe$ASR_GENDER, dataframe$ASR_FRIENDS_TOTAL) # uses CBCL_ASR_subscale_tscores_func 
   
   ###Calculate total score on Spouse/Partner scale (items ASR_RELATION_A - ASR_RELATION_H)
