@@ -83,43 +83,30 @@ T_score = ifelse(gender == 1 & total_score == -8, 20,
 ####################################################################################### 
 ASR_FAMILY_TSCORE <- function(gender, mean_score) {
 
-# First, rounds ASR Family scale total to the nearest .2   
-ASR_FAMILY_MEAN = ifelse(mean_score >= 0 & mean_score < .10, 0,
-                 ifelse(mean_score >= .11 & mean_score <= .30, 0.2,
-                 ifelse(mean_score >= .31 & mean_score <= .50, 0.4,
-                 ifelse(mean_score >= .51 & mean_score <= .70, 0.6,       
-                 ifelse(mean_score >= .71 & mean_score <= .90, 0.8,
-                 ifelse(mean_score >= .91 & mean_score <= 1.10, 1.0,
-                 ifelse(mean_score >= 1.11 & mean_score <= 1.30, 1.2,
-                 ifelse(mean_score >= 1.31 & mean_score <= 1.50, 1.4,
-                 ifelse(mean_score >= 1.51 & mean_score <= 1.70, 1.6,
-                 ifelse(mean_score >= 1.71 & mean_score <= 1.90, 1.8,
-                 ifelse(mean_score >= 1.91 & mean_score <= 2.00, 2.0, 666)))))))))))
-
 # Then, gets t-score based on mean score 
-T_score = ifelse(gender == 1 & ASR_FAMILY_MEAN == 0, 20, 
-          ifelse(gender == 1 & ASR_FAMILY_MEAN == 0.2, 23, 
-          ifelse(gender == 1 & ASR_FAMILY_MEAN == 0.4, 27, 
-          ifelse(gender == 1 & ASR_FAMILY_MEAN == 0.6, 30, 
-          ifelse(gender == 1 & ASR_FAMILY_MEAN == 0.8, 33, 
-          ifelse(gender == 1 & ASR_FAMILY_MEAN == 1.0, 38, 
-          ifelse(gender == 1 & ASR_FAMILY_MEAN == 1.2, 41, 
-          ifelse(gender == 1 & ASR_FAMILY_MEAN == 1.4, 44, 
-          ifelse(gender == 1 & ASR_FAMILY_MEAN == 1.6, 48, 
-          ifelse(gender == 1 & ASR_FAMILY_MEAN == 1.8, 51, 
-          ifelse(gender == 1 & ASR_FAMILY_MEAN == 2.0, 57, 
+T_score = ifelse(gender == 1 & mean_score == 0, 20, 
+          ifelse(gender == 1 & mean_score == 0.2, 23, 
+          ifelse(gender == 1 & mean_score == 0.4, 27, 
+          ifelse(gender == 1 & mean_score == 0.6, 30, 
+          ifelse(gender == 1 & mean_score == 0.8, 33, 
+          ifelse(gender == 1 & mean_score == 1.0, 38, 
+          ifelse(gender == 1 & mean_score == 1.2, 41, 
+          ifelse(gender == 1 & mean_score == 1.4, 44, 
+          ifelse(gender == 1 & mean_score == 1.6, 48, 
+          ifelse(gender == 1 & mean_score == 1.8, 51, 
+          ifelse(gender == 1 & mean_score == 2.0, 57, 
                                                                                                                
-          ifelse(gender == 2 & ASR_FAMILY_MEAN == 0, 20, 
-          ifelse(gender == 2 & ASR_FAMILY_MEAN == 0.2, 23, 
-          ifelse(gender == 2 & ASR_FAMILY_MEAN == 0.4, 25, 
-          ifelse(gender == 2 & ASR_FAMILY_MEAN == 0.6, 28, 
-          ifelse(gender == 2 & ASR_FAMILY_MEAN == 0.8, 30, 
-          ifelse(gender == 2 & ASR_FAMILY_MEAN == 1.0, 36, 
-          ifelse(gender == 2 & ASR_FAMILY_MEAN == 1.2, 41, 
-          ifelse(gender == 2 & ASR_FAMILY_MEAN == 1.4, 44, 
-          ifelse(gender == 2 & ASR_FAMILY_MEAN == 1.6, 48, 
-          ifelse(gender == 2 & ASR_FAMILY_MEAN == 1.8, 52, 
-          ifelse(gender == 2 & ASR_FAMILY_MEAN == 2.0, 58,  666))))))))))))))))))))))
+          ifelse(gender == 2 & mean_score == 0, 20, 
+          ifelse(gender == 2 & mean_score == 0.2, 23, 
+          ifelse(gender == 2 & mean_score == 0.4, 25, 
+          ifelse(gender == 2 & mean_score == 0.6, 28, 
+          ifelse(gender == 2 & mean_score == 0.8, 30, 
+          ifelse(gender == 2 & mean_score == 1.0, 36, 
+          ifelse(gender == 2 & mean_score == 1.2, 41, 
+          ifelse(gender == 2 & mean_score == 1.4, 44, 
+          ifelse(gender == 2 & mean_score == 1.6, 48, 
+          ifelse(gender == 2 & mean_score == 1.8, 52, 
+          ifelse(gender == 2 & mean_score == 2.0, 58,  666))))))))))))))))))))))
 
 }
 
