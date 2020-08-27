@@ -84,7 +84,7 @@ T_score = ifelse(gender == 1 & total_score == -8, 20,
 ASR_FAMILY_TSCORE <- function(gender, mean_score) {
 
 # Then, gets t-score based on mean score 
-T_score = ifelse(gender == 1 & mean_score == 0, 20, 
+T_score = ifelse(gender == 1 & mean_score == 0.0, 20, 
           ifelse(gender == 1 & mean_score == 0.2, 23, 
           ifelse(gender == 1 & mean_score == 0.4, 27, 
           ifelse(gender == 1 & mean_score == 0.6, 30, 
@@ -96,7 +96,7 @@ T_score = ifelse(gender == 1 & mean_score == 0, 20,
           ifelse(gender == 1 & mean_score == 1.8, 51, 
           ifelse(gender == 1 & mean_score == 2.0, 57, 
                                                                                                                
-          ifelse(gender == 2 & mean_score == 0, 20, 
+          ifelse(gender == 2 & mean_score == 0.0, 20, 
           ifelse(gender == 2 & mean_score == 0.2, 23, 
           ifelse(gender == 2 & mean_score == 0.4, 25, 
           ifelse(gender == 2 & mean_score == 0.6, 28, 
