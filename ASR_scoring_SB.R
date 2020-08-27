@@ -29,7 +29,7 @@ ASR_scoring_SB <- function(dataframe,t_score_table){
   
   # replace all 3s ("not in contact") with NAs
   dataframe[,fam_var_list][dataframe[, fam_var_list] == 3] <- NA
-  dataframe$ASR_FAMILY_MEAN = round(rowMeans(dataframe[,fam_var_list],na.rm = TRUE)/.2)*.2 #rounds mean score to the nearest .2
+  dataframe$ASR_FAMILY_MEAN = round(round(rowMeans(dataframe[,fam_var_list],na.rm = TRUE)/.2)*.2, digits = 1) #rounds mean score to the nearest .2
   dataframe$ASR_FAMILY_TSCORE <- ASR_FAMILY_TSCORE(dataframe$ASR_GENDER, dataframe$ASR_FAMILY_MEAN) # uses CBCL_ASR_subscale_tscores_func 
   
   ###Calculate total score on Job scale (total of items ASR_WORK_A - ASR_WORK_I)
