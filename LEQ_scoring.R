@@ -13,6 +13,9 @@ LEQ <- function(dataframe){
   #sums up all of the past 12 months responses for the LEQ A items 
   dataframe$LEQ_12MO = rowSums(ifelse(dataframe[,paste("LEQ_",c(1:40),"A",sep="")] == 2, 1, 0), na.rm = TRUE) 
   
+  #sum up all of the past 12 months and past 3 months responses for the LEQ A items (i.e., all life events that happened wihtin past 12 months and past 3 months)
+  dataframe$LEQ_12and3MO = dataframe$LEQ_12MO + dataframe$LEQ_3MO
+  
   ###Find maximum impact score (i.e., highest score for any b question, the parent provided in the entire questionnaire.)
   for (curr_participant in 1:nrow(SB_all_scored)){
     max_index <- which.max(dataframe[,paste("LEQ_",c(1:40),"B_IMPACT",sep="")][curr_participant,]) #finds the index for the maximum impact score in each participant's row
