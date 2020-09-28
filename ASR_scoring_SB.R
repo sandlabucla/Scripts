@@ -69,29 +69,45 @@ ASR_scoring_SB <- function(dataframe,t_score_table){
   
   # (1) Internalizing (Total of Anxious/Depressed, Withdrawn, and Somatic Complaints items)
   ASR_anxious_depressed_all = dataframe[,paste("ASR_",c(12,13,14,22,31,33,34,35,45,47,50,52,71,91,103,107,112,113),sep='')]
-  dataframe$ASR_ANX_DEP <- rowSums(ASR_anxious_depressed_all)
+  dataframe$ASR_ANX_DEP_TOT <- rowSums(ASR_anxious_depressed_all)
+  ###Get ASR Anxious/Depressed scale T-score
+  dataframe$ASR_ANX_DEP_TSCORE <- ASR_ANX_DEP_TSCORE(dataframe$ASR_GENDER, dataframe$ASR_ANX_DEP_TOT) #uses CBCL_ASR_subscale_tscores_funcs
   ASR_withdrawn_all = dataframe[,paste("ASR_",c(25,30,42,48,60,65,67,69,111),sep='')]
-  dataframe$ASR_WITHDRAWN <- rowSums(ASR_withdrawn_all)
+  dataframe$ASR_WITHDRAWN_TOT <- rowSums(ASR_withdrawn_all)
+  ###Get ASR Withdrawn scale T-score
+  dataframe$ASR_WITHDRAWN_TSCORE <- ASR_WITHDRAWN_TSCORE(dataframe$ASR_GENDER, dataframe$ASR_WITHDRAWN_TOT) #uses CBCL_ASR_subscale_tscores_funcs
   ASR_somatic_all = dataframe[,paste("ASR_",c(51,54,paste("56_",c("A","B","C","D","E","F","G","H","I"),sep=''),100),sep='')]
-  dataframe$ASR_SOM =rowSums(ASR_somatic_all)
+  dataframe$ASR_SOM_TOT =rowSums(ASR_somatic_all)
+  ###Get ASR Somatic Complaints scale T-score
+  dataframe$ASR_SOM_TSCORE <- ASR_SOM_TSCORE(dataframe$ASR_GENDER, dataframe$ASR_SOM_TOT) #uses CBCL_ASR_subscale_tscores_funcs
   ASR_Internalizing_all = cbind(ASR_anxious_depressed_all, ASR_withdrawn_all, ASR_somatic_all)
   dataframe$ASR_INT_TOTAL = ifelse(dataframe$ASR_more_8_missing_items == TRUE, NA, rowSums(ASR_Internalizing_all, na.rm = TRUE)) # calculates only if no more than 8 items are missing                                      
   
   # (2) Externalizing (Total of Agressive Behavior, Rule-breaking Behavior, and Intrusive items)
   ASR_aggressive_all = dataframe[,paste("ASR_",c(3,5,16,28,37,55,57,68,81,86,87,95,97,116,118),sep='')]
-  dataframe$ASR_AGGRESSIVE <- rowSums(ASR_aggressive_all)
+  dataframe$ASR_AGGRESSIVE_TOT <- rowSums(ASR_aggressive_all)
+  ###Get ASR Aggressive Behavior scale T-score
+  dataframe$ASR_AGGRESSIVE_TSCORE <- ASR_AGGRESSIVE_TSCORE(dataframe$ASR_GENDER, dataframe$ASR_AGGRESSIVE_TOT) #uses CBCL_ASR_subscale_tscores_funcs
   ASR_rule_breaking_all = dataframe[,paste("ASR_",c(6,20,23,26,39,41,43,76,82,90,92,114,117,122),sep='')]
-  dataframe$ASR_RULE_BREAKING <- rowSums(ASR_rule_breaking_all)
+  dataframe$ASR_RULE_BREAKING_TOT <- rowSums(ASR_rule_breaking_all)
+  ###Get ASR Rule Breaking scale T-score
+  dataframe$ASR_RULE_BREAKING_TSCORE <- ASR_RULE_BREAKING_TSCORE(dataframe$ASR_GENDER, dataframe$ASR_RULE_BREAKING_TOT) #uses CBCL_ASR_subscale_tscores_funcs
   ASR_intrusive_all = dataframe[,paste("ASR_",c(7,19,74,93,94,104),sep='')]
-  dataframe$ASR_INTRUSIVE <- rowSums(ASR_intrusive_all)
+  dataframe$ASR_INTRUSIVE_TOT <- rowSums(ASR_intrusive_all)
+  ###Get ASR Intrusive scale T-score
+  dataframe$ASR_INTRUSIVE_TSCORE <- ASR_INTRUSIVE_TSCORE(dataframe$ASR_GENDER, dataframe$ASR_INTRUSIVE_TOT) #uses CBCL_ASR_subscale_tscores_funcs
   ASR_Externalizing_all = cbind(ASR_aggressive_all, ASR_rule_breaking_all, ASR_intrusive_all)
   dataframe$ASR_EXT_TOTAL = ifelse(dataframe$ASR_more_8_missing_items == TRUE, NA, rowSums(ASR_Externalizing_all, na.rm = TRUE)) # calculates only if no more than 8 items are missing 
   
   # Other Problems, i.e. those that do not fit into internalizing/externalizing categories (Includes Thought Problems and Attention Problems items); necessary to calculate Total Problems
   ASR_thought_probs_all = dataframe[,paste("ASR_",c(9,18,36,40,46,63,66,70,84,85),sep='')]
-  dataframe$ASR_THOUGHT_PROB <- rowSums(ASR_thought_probs_all)
+  dataframe$ASR_THOUGHT_PROB_TOT <- rowSums(ASR_thought_probs_all)
+  ###Get ASR Thought Problems scale T-score
+  dataframe$ASR_THOUGHT_PROB_TSCORE <- ASR_THOUGHT_PROB_TSCORE(dataframe$ASR_GENDER, dataframe$ASR_THOUGHT_PROB_TOT) #uses CBCL_ASR_subscale_tscores_funcs
   ASR_attention_probs_all= dataframe[,paste("ASR_",c(1,8,11,17,53,59,61,64,78,101,102,105,108,119,121),sep='')]
-  dataframe$ASR_ATTN_PROB <- rowSums(ASR_attention_probs_all)
+  dataframe$ASR_ATTN_PROB_TOT <- rowSums(ASR_attention_probs_all)
+  ###Get ASR Attention Problems scale T-score
+  dataframe$ASR_ATTN_PROB_TSCORE <- ASR_ATTN_PROB_TSCORE(dataframe$ASR_GENDER, dataframe$ASR_ATTN_PROB_TOT) #uses CBCL_ASR_subscale_tscores_funcs
   ASR_other_problems_all = dataframe[,paste("ASR_",c(10,21,24,27,29,32,38,44,58,62,72,75,77,79,83,89,96,99,110,115,120),sep='')]
   dataframe$ASR_OTHER_PROBLEMS <- rowSums(ASR_other_problems_all)
   ASR_other_probs_all = cbind(ASR_thought_probs_all, ASR_attention_probs_all, ASR_other_problems_all)
