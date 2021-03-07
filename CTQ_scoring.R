@@ -34,7 +34,7 @@ CTQ <- function(dataframe){
   #Calculate physical neglect scale
   dataframe$CTQ_Physical_Neglect <- rowSums(dataframe[,paste("CTQ",c(1,"2R",4,6,"26R"),sep="")], na.rm = FALSE)
   #Calculate total CTQ score
-  dataframe$CTQ_Total <- rowSums(dataframe[,paste("CTQ",c(1, "2R", 3:4,"5R",6,"7R",8:12,"13R", 14:18, "19R", 20:25, "26R", 27:28),sep="")], na.rm = FALSE)
+  dataframe$CTQ_Total <- rowSums(dataframe[,paste("CTQ",c(1, "2R", 3:4,"5R",6,"7R",8:9, 11:12,"13R", 14:15, 17:18, "19R", 20:21, 23:25, "26R", 27, "28R"),sep="")], na.rm = FALSE)
   
   return(dataframe)
 }
