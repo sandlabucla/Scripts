@@ -3,7 +3,7 @@ Lab Wide Completed Scripts
 
 Maintained by:
 
-Y Waizman - Lab Manager
+E Gaines - Lab Manager
 
 AS Mendez Leal - Graduate Student
 
