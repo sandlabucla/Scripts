@@ -202,6 +202,17 @@ CBCL_scoring_SB <- function(dataframe,t_score_table){
   dataframe$CBCL_ATTN_PROB_TSCORE <- CBCL_ATTN_PROB_TSCORE(dataframe$CBCL_CHILD_GENDER, dataframe$CBCL_CHILD_AGE_CAT, dataframe$CBCL_ATTN_PROB_TOT) #uses CBCL_ASR_subscale_tscores_funcs
   CBCL_other_problems_all <- attach_q_prefix('CBCL',c(6,7,15,24,44,53,55,'56_H',74,77,93,98,107,108,109,110,'113_A','113_B','113_C'))
   dataframe$CBCL_OTHER_PROBLEMS <- rowSums(dataframe[,CBCL_other_problems_all],na.rm = TRUE)
+
+  # DSM scales
+ dataframe$CBCL_DSM_DEP_PROB_TOT <-rowSums(dataframe[,attach_q_prefix('CBCL',c(5, 14, 18, 24, 35, 52, 54, 76, 77, 91,100,102,103))],na.rm = TRUE)
+ dataframe$CBCL_DSM_ANX_PROB_TOT <- rowSums(dataframe[,attach_q_prefix('CBCL',c(11, 29, 30, 31, 45, 47, 50, 71, 112))],na.rm = TRUE)
+ dataframe$CBCL_DSM_SOM_PROB_TOT <-rowSums(dataframe[,attach_q_prefix('CBCL',c('56_A', '56_B', '56_C', '56_D', '56_E', '56_F', '56_G'))],na.rm = TRUE)
+ dataframe$CBCL_DSM_ADHD_PROB_TOT <-rowSums(dataframe[,attach_q_prefix('CBCL',c(4, 8, 10, 41, 78, 93, 104))],na.rm = TRUE)
+ dataframe$CBCL_DSM_OPP_PROB_TOT <- rowSums(dataframe[,attach_q_prefix('CBCL',c(3, 22, 23, 86, 95))],na.rm = TRUE)
+ dataframe$CBCL_DSM_CONDUCT_PROB_TOT <- rowSums(dataframe[,attach_q_prefix('CBCL',c(15, 16, 21, 26, 28, 37, 39, 43, 57, 67, 72, 81, 82, 90, 97, 101, 106))],na.rm = TRUE)
+ dataframe$CBCL_DSM_SLUGGISH_TOT <- rowSums(dataframe[,attach_q_prefix('CBCL',c(13,17,80,102))],na.rm = TRUE)
+ dataframe$CBCL_DSM_OCD_TOT <-rowSums(dataframe[,attach_q_prefix('CBCL',c(9,31,32,52,66,84,85,112))],na.rm = TRUE)
+ dataframe$CBCL_DSM_STRESS_PROB_TOT <- rowSums(dataframe[,attach_q_prefix('CBCL',c(3,8,9,11,31,34,45,47,50,52,69,87,103,111))],na.rm = TRUE)
   
   # calculates only if no more than 8 items are missing
   dataframe$CBCL_OTHER_PROBS_TOTAL <- compute_tot_scores_for_valid_entries (dataframe[,c(CBCL_thought_probs_all, CBCL_attention_probs_all,
@@ -259,7 +270,7 @@ CBCL_scoring_SB <- function(dataframe,t_score_table){
           curr_max_age<-18
         } 
         dataframe[each_row,paste("CBCL", toupper(curr_scale_tag),"TSCORE", sep="_")] <- get_t_score_from_table(curr_min_age, curr_max_age, 
-                                                                                                                  curr_scale_tag, dataframe$Gender[each_row], 
+                                                                                                                  curr_scale_tag, dataframe$Sex[each_row], 
                                                                                                                   dataframe[each_row,paste("CBCL", toupper(curr_scale_tag),"TOTAL", sep="_")], 
                                                                                                                   CBCL_t_score_table)
       }
