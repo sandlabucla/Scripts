@@ -159,7 +159,7 @@ ASR_scoring_SB <- function(dataframe,t_score_table){
         } 
         dataframe[each_row,paste("ASR", toupper(curr_scale_tag),"TSCORE", sep="_")] <- get_t_score_from_table(curr_min_age, 
                                                                                                                   curr_max_age, curr_scale_tag, 
-                                                                                                                  dataframe$Gender[each_row], 
+                                                                                                                  dataframe$Sex[each_row], 
                                                                                                                   dataframe[each_row,paste("ASR", toupper(curr_scale_tag),"TOTAL", sep="_")], ASR_t_score_table)
       }
     }  
