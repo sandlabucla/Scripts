@@ -75,16 +75,6 @@ PSQI <- function(dataframe){
                                               ifelse(dataframe$sumPSQI_2new_5_A > 2 & dataframe$sumPSQI_2new_5_A <= 4, 2, 
                                                      ifelse(dataframe$sumPSQI_2new_5_A > 4 & dataframe$sumPSQI_2new_5_A <= 6, 3, 666))))
   
-  #### Component 3: Sleep duration 
-  # Minimum Score = 0 (better); Maximum Score = 3 (worse)
-  # If someone put 6 I would say their sleep gets a score of 2 but anything greater than 6 gets a 1
-  # if PSQI_4 values < 5 give 3, if 5 - 6 give 2, if > 6 to 7 give 1, if > 7 give 0, otherwise give 666 
-  dataframe$PSQI_comp3 <- ifelse(dataframe$PSQI_4 < 5, 3,
-                                     ifelse(dataframe$PSQI_4 >= 5 & dataframe$PSQI_4 <= 6, 2,
-                                            ifelse(dataframe$PSQI_4 > 6 & dataframe$PSQI_4 <= 7, 1,
-                                                   ifelse(dataframe$PSQI_4 > 7, 0, 666))))
-  
-  
   #### Component 4: Habitual sleep efficiency 
   # Uses function to convert Qualtrics coded hour data to normal hour data
   dataframe$PSQI_1_Hour <- convert_Qualtrics_hour_to_normal_hour(dataframe$PSQI_1_1) 
@@ -109,7 +99,7 @@ PSQI <- function(dataframe){
   # Calculate difference in seconds and hours between PSQI_1 (usual bed time) and PSQI_3 (usual getting up time).
   PSQI_Diffsec <- ifelse(as.numeric(substring(dataframe$PSQI_1,12,13))<12,as.double(abs(difftime(dataframe$PSQI_3, dataframe$PSQI_1, units = "secs"))), as.double(abs(difftime(dataframe$PSQI_3, dataframe$PSQI_1-86400, units = "secs"))))
   dataframe$PSQI_Diffhour <- abs(PSQI_Diffsec / 3600)
-  # Instead of using the participants self-reported number of hours slept, calculate it by subtracting the number of minutes it takes them to fall asleep, but the calculated number of hours they spend in bed
+  # Instead of using the participants self-reported number of hours slept, calculate it by subtracting the number of minutes it takes them to fall asleep, by the calculated number of hours they spend in bed
   dataframe$PSQI_4 <- dataframe$PSQI_Diffhour - dataframe$PSQI_2/60 
   # Calculate habiiual sleep efficiency as foflows: (Calculated Number of hours slept/Number of hours spent in bed) X 100 = Habitual sleep efficiency (%) 
   dataframe$PSQI_tmphse <- (dataframe$PSQI_4 / dataframe$PSQI_Diffhour) * 100 # note the scoring guide says to use the self-report number of hours slept, but since many participants reported that incorrectly, we are calculating this here instead
@@ -119,6 +109,15 @@ PSQI <- function(dataframe){
                              ifelse(dataframe$PSQI_tmphse >= 75 & dataframe$PSQI_tmphse < 85, 1,
                                     ifelse(dataframe$PSQI_tmphse >= 65 & dataframe$PSQI_tmphse < 75, 2, 
                                            ifelse(dataframe$PSQI_tmphse < 65, 3, 666))))
+  
+  #### Component 3: Sleep duration (this is calculated after PSQI_comp4 because the calculated PSQI_4 is only calculated at that stage of the scroing script) 
+  # Minimum Score = 0 (better); Maximum Score = 3 (worse)
+  # If someone put 6 I would say their sleep gets a score of 2 but anything greater than 6 gets a 1
+  # if PSQI_4 values < 5 give 3, if 5 - 6 give 2, if > 6 to 7 give 1, if > 7 give 0, otherwise give 666 
+  dataframe$PSQI_comp3 <- ifelse(dataframe$PSQI_4 < 5, 3,
+                                 ifelse(dataframe$PSQI_4 >= 5 & dataframe$PSQI_4 <= 6, 2,
+                                        ifelse(dataframe$PSQI_4 > 6 & dataframe$PSQI_4 <= 7, 1,
+                                               ifelse(dataframe$PSQI_4 > 7, 0, 666))))
   
   #### Component 5: Sleep disturbances 
   # Add the scores for questions # 5b-5j: 
