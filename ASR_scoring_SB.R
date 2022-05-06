@@ -44,8 +44,8 @@ ASR_scoring_SB <- function(dataframe,t_score_table){
   
   ###Calculate mean of all subscale T-scores (Friends, Spouse/Partner, Family, Job & Education)
   dataframe$ASR_MEAN_ADAPTIVE_SCORE <- round_half_up(rowMeans(dataframe[,paste("ASR",c("FRIENDS_TSCORE", "SP_PART_TSCORE", 
-                                                                                               "FAMILY_TSCORE", "JOB_TSCORE", 
-                                                                                               "EDU_TSCORE"),sep='_')], na.rm=TRUE)/.5)*.5
+                                                                                       "FAMILY_TSCORE", "JOB_TSCORE", 
+                                                                                       "EDU_TSCORE"),sep='_')], na.rm=TRUE)/.5)*.5
   
   ###Get Mean Adaptive T-score from mean of all subscale T-scores calculated above 
   dataframe$ASR_MEAN_ADAPT_TSCORE <- ASR_MEAN_ADAPT_TSCORE(dataframe$ASR_GENDER, dataframe$ASR_MEAN_ADAPTIVE_SCORE) # uses CBCL_ASR_subscale_tscores_func to round mean and get corresponding t-score
@@ -158,9 +158,9 @@ ASR_scoring_SB <- function(dataframe,t_score_table){
           curr_max_age<-59
         } 
         dataframe[each_row,paste("ASR", toupper(curr_scale_tag),"TSCORE", sep="_")] <- get_t_score_from_table(curr_min_age, 
-                                                                                                                  curr_max_age, curr_scale_tag, 
-                                                                                                                  dataframe$Sex[each_row], 
-                                                                                                                  dataframe[each_row,paste("ASR", toupper(curr_scale_tag),"TOTAL", sep="_")], ASR_t_score_table)
+                                                                                                              curr_max_age, curr_scale_tag, 
+                                                                                                              dataframe$Sex[each_row], 
+                                                                                                              dataframe[each_row,paste("ASR", toupper(curr_scale_tag),"TOTAL", sep="_")], ASR_t_score_table)
       }
     }  
   }
