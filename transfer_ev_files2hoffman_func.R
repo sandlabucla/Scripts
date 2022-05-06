@@ -26,6 +26,14 @@ transfer_ev_files2hoffman_func <- function(uname, subs, behav_data_path, curr_wa
       ev_files <- Sys.glob(file.path(behav_data_path, subs[curr_sub], curr_wave,"Scan_session", "Onsets", tasks[curr_task], "*.txt"))
       #skip this task if there are no onsets
       if (identical(ev_files, character(0))==FALSE){
+        
+        # if the participant's subject folder or timepoint or "behav" folder for that timepoint have NOT been generated
+        
+        # figure out which layer(s) you're missing
+        
+        # make the apporiate folder
+        
+        
         #set the path to the subject's behavioral folder on hoffman2
         hoffpath <- file.path(hoffman_path, subs[curr_sub], time_point, "behav") 
         #get the task folders that exist on hoffman2 for the subject's behav folder
